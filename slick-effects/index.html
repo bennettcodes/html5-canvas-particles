@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Slick Effects</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TimelineMax.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/quicksettings/latest/quicksettings.min.js"></script>
+<!--
+    <script language=javascript>
+        switch (true) {
+        case (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) && (!(/iPad/i.test(navigator.userAgent))) || (!(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent))) && (/iPad/i.test(navigator.userAgent)):
+            location.replace("http://bennettcodes.com/dev/slick-effects-responsive");
+            break;
+        }
+    </script>
+-->
+</head>
+
+<body>
+    <div id="origin-tracker"></div>
+    <div id="image-cache-container">
+        <img class="image-cache" src="http://bennettcodes.com/dev/slick-effects/images/downtown-la.jpg">
+        <img class="image-cache" src="http://bennettcodes.com/dev/slick-effects/images/agoura-hills.jpg">
+        <img class="image-cache" src="http://bennettcodes.com/dev/slick-effects/images/pier.jpg">
+        <img class="image-cache" src="http://bennettcodes.com/dev/slick-effects/images/desert.jpg">
+    </div>
+    <canvas id="my-canvas">Sorry, your browser doesn't support this.</canvas>
+    <div id="background-images-container">
+        <div id="background-images">
+            <img id="downtown-la-bg" class="background-image" src="http://bennettcodes.com/dev/slick-effects/images/downtown-la.jpg">
+            <img id="agoura-hills-bg" class="background-image" src="http://bennettcodes.com/dev/slick-effects/images/agoura-hills.jpg">
+            <img id="pier-bg" class="background-image" src="http://bennettcodes.com/dev/slick-effects/images/pier.jpg">
+            <img id="desert-bg" class="background-image" src="http://bennettcodes.com/dev/slick-effects/images/desert.jpg">
+        </div>
+    </div>
+    <div id="container">
+        <div id="chrome-checker">For the best viewing experience, please use Google Chrome.
+            <div id="chrome-checker-close">X</div>
+        </div>
+        <div id="cover">
+            Loading...
+        </div>
+        <div id="header">Yay. Confetti.</div>
+        <div id="wrapper">
+            <div id="it1" class="intro-text">
+                <div class="intro-text-i intro-text-item">I</div>
+                <div class="intro-text-like intro-text-item">Like</div>
+                <div class="intro-text-to intro-text-item">To</div>
+                <div class="intro-text-make intro-text-item">Make</div>
+                <div class="intro-text-things intro-text-item">Things</div>
+            </div>
+            <div id="buttons">
+                <div id="bennett-button" class="button active-button">Downtown</div>
+                <div id="resume-button" class="button">Highway</div>
+                <div id="portfolio-button" class="button">Pier</div>
+                <div id="contact-button" class="button">Desert</div>
+            </div>
+            <div id="sections">
+                <div id="bennett-section" class="section">
+                    <div class="hero-container">
+                        <div class="hero-text-container">
+                            <div class="hero-text hero-text-stagger-item">
+                                <div class="hero-text-title">
+                                    Bennett
+                                </div>
+                            </div>
+                            <div class="hero-text hero-text-stagger-item">
+                                <div class="hero-text-title">
+                                    Doesn't
+                                </div>
+                            </div>
+                            <div class="hero-text hero-text-stagger-item">
+                                <div class="hero-text-title">
+                                    Stop
+                                </div>
+                            </div>
+                            <div class="hero-text hero-text-stagger-item">
+                                <div class="hero-text-title">
+                                    Creating.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-tile-container">
+                            <div class="hero-tile-container-inner">
+                                <div class="hero-tile black-opacity-tile"></div>
+                            </div>
+                        </div>
+                        <div class="hero-image-container">
+                            <img id="bennett-hero" class="hero" src="http://bennettcodes.com/dev/slick-effects/images/profile-purple.jpg">
+                        </div>
+                    </div>
+                    <div class="section-content">
+                        <div class="section-content-bg darker-grey-bg"></div>
+                        <div class="section-content-text">
+                            <p class="section-content-paragraph stagger-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae diam nisi. Sed vitae enim ac turpis eleifend tincidunt. Aenean ut tempus urna. Fusce finibus diam mi, ac porttitor tellus semper in. Nunc quis mauris sapien. Integer auctor, lorem vulputate pulvinar sagittis, tellus diam accumsan libero, ut interdum sem nunc ut nisl. Pellentesque at tortor id mauris consequat efficitur et non urna. Curabitur sem odio, pharetra ac porta quis, rhoncus vitae eros. Integer purus enim, maximus vitae maximus vitae, efficitur at felis. Nulla a faucibus erat, eu hendrerit mauris. Ut ac sapien lacus. Morbi ex erat, dictum pellentesque varius in, mollis et lectus. Sed metus dolor, volutpat eu lacus at, convallis mattis dolor. Praesent in mauris sed nunc laoreet cursus ac sed tortor. Etiam ac nulla tortor.</p>
+
+                            <p class="section-content-paragraph stagger-item">Etiam placerat velit vel orci lobortis, sit amet iaculis diam suscipit. Duis a felis sed ligula tincidunt pulvinar. Duis vitae augue eget neque venenatis venenatis. Duis eu justo velit. Pellentesque varius bibendum quam non porta. Proin feugiat, magna ut pharetra imperdiet, massa diam malesuada elit, ac fermentum orci libero et tellus. Proin lobortis nisl quam, non lacinia nisl interdum vitae. Praesent convallis congue commodo. Maecenas sem massa, pretium vitae turpis vel, iaculis fringilla metus. Donec sed sem quis arcu laoreet bibendum. Sed dictum nec justo non fermentum. Donec a condimentum justo. Sed blandit mauris ac vehicula tincidunt. Donec non placerat nulla, quis pretium massa. Mauris efficitur rhoncus sem, at lacinia risus blandit sed.</p>
+
+                            <p class="section-content-paragraph stagger-item">Vestibulum vel justo sed urna faucibus luctus lacinia sed lectus. Quisque eu eleifend ex. Nunc quis ante dui. Phasellus a dictum eros. Ut porttitor ultrices ante, vel elementum nisi commodo nec. Donec consectetur urna id massa viverra, ut dapibus leo auctor. Etiam posuere sem eu purus rhoncus cursus. Nullam aliquam augue sit amet nisl efficitur eleifend. Phasellus nunc eros, feugiat nec sem sit amet, ornare laoreet elit.</p>
+<!--
+                            <p class="section-content-paragraph stagger-item">First off, thanks for taking the time to visit my site - It really does mean a lot to me.</p>
+
+                            <p class="section-content-paragraph stagger-item">I've been designing the web for a little over five years now. Having always possessed a deep love and appreciation for gorgeous web experiences, I've carefully honed my abilities in an ongoing effort to become the most seasoned and capable front-end developer that I possibly can.</p>
+
+                            <p class="section-content-paragraph stagger-item">Creativity has come naturally to me for as long as I can remember, as has my obsession with computers and technology. By around the age of 20, it occurred to me that these two qualities were begging to be utilized in some harmonious fashion. Such an epiphany propelled me into the vast and evergrowing field of web development and design, with a particular focus on UI and UX (User Interface &amp; User Experience). In years past, I have spent time dabbling in various sectors of web creation, building a mastery over the Adobe suite, HTML5, CSS3, and always courting some of the more heavy-handed coding languages that never seemed to click.</p>
+
+                            <h3 class="section-content-subheader stagger-item">Then, JavaScript Clicked.</h3>
+
+                            <p class="section-content-paragraph stagger-item">It was at this very moment that my already burning passion for the web sprouted into a feverish obsession. Seeing the endless array of dynamic animations and interactions that had resided in my head for so many years finally translate into tangible pixels for the first time was frankly, an indescribable rush. All I knew by this point was that something beautiful had begun. Since then I have not gone a single day without coding anywhere from 6 hours to 16 hours. I build sites for the fun of it and create unique and novel JavaScript widgets. I have an insatiable hunger for creating gorgeous art in the form of websites, and weaving experiences that users are very much unprepared for; experiences that will leave them with a profound and lasting impression.</p>
+
+                            <p class="section-content-paragraph stagger-item">This is what drives me. Knowing that there are so many websites floating around in digital space that are literally hemorrhaging potential by neglecting a much-needed respect and commitment to solid web design; sites that provide an otherwise exemplary service or product, but still struggle when it comes to retaining customer interest.</p>
+
+                            <p class="section-content-paragraph stagger-item">My philosophy is that by giving the user an experience that is clean, intuitive and just plain fun, you'll be remembered. Moreover, you'll be remembered POSITIVELY.</p>
+
+                            <p class="section-content-paragraph stagger-item">Let's rebuild the web.</p>
+-->
+                        </div>
+                    </div>
+                </div>
+                <div id="resume-section" class="section">
+
+                </div>
+                <div id="portfolio-section" class="section">
+
+                </div>
+                <div id="contact-section" class="section">
+
+                </div>
+                <!--
+                <div class="section white-bg">
+                    <div class="intro-text">
+                        <div class="intro-text-its intro-text-item">I</div>
+                        <div class="intro-text-a intro-text-item">Just</div>
+                        <div class="intro-text-fun intro-text-item">Keep</div>
+                        <div class="intro-text-journey intro-text-item">On</div>
+                        <div class="intro-text-ahead intro-text-item">Flowin'</div>
+                    </div>
+                </div>
+                <div class="section white-bg-less-solid"></div>
+-->
+            </div>
+        </div>
+    </div>
+    <script src="imagesloaded.pkgd.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
